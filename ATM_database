@@ -1,0 +1,50 @@
+-- 1. Create CUSTOMER Table
+CREATE TABLE CUSTOMER (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(15) UNIQUE
+);
+
+-- 2. Create ACCOUNT Table
+CREATE TABLE ACCOUNT (
+    account_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_number VARCHAR(20) NOT NULL UNIQUE,
+    customer_id INT NOT NULL,
+    balance DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    account_type VARCHAR(20) NOT NULL,
+    open_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
+);
+
+-- 3. Create ATM Table
+CREATE TABLE ATM (
+    atm_id INT AUTO_INCREMENT PRIMARY KEY,
+    location VARCHAR(255) NOT NULL,
+    cash_level INT NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
+
+-- 4. Create CARD Table
+CREATE TABLE CARD (
+    card_id INT AUTO_INCREMENT PRIMARY KEY,
+    card_number VARCHAR(16) NOT NULL UNIQUE,
+    account_id INT NOT NULL,
+    pin_hash VARCHAR(255) NOT NULL, -- Stored as a secure hash
+    expiry_date DATE NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (account_id) REFERENCES ACCOUNT(account_id)
+);
+
+-- 5. Create TRANSACTION Table
+CREATE TABLE TRANSACTION (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_id INT NOT NULL,
+    atm_id INT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    transaction_type VARCHAR(20) NOT NULL,
+    timestamp DATETIME NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    FOREIGN KEY (account_id) REFERENCES ACCOUNT(account_id),
+    FOREIGN KEY (atm_id) REFERENCES ATM(atm_id)
+);
