@@ -1,0 +1,90 @@
+package atmmachinee;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Login extends JFrame implements ActionListener {
+   
+    JButton submit, reset, close;
+    JTextField TFUsername;
+    JPasswordField TFPassword;
+
+   
+    Login() {
+        
+        setLayout(null); 
+        setTitle("Login"); 
+        getContentPane().setBackground(Color.WHITE); 
+        
+        
+        setSize(400, 250); 
+        setLocation(600, 250); 
+        
+    
+        // ** User Name Label [08:37] **
+        JLabel LBLUsername = new JLabel("User Name");
+        LBLUsername.setBounds(20, 20, 100, 20); 
+        add(LBLUsername);
+        
+        // ** User Name Text Field [12:34] **
+        TFUsername = new JTextField();
+        TFUsername.setBounds(130, 20, 200, 20); 
+        add(TFUsername);
+
+        
+        JLabel LBLPassword = new JLabel("Password");
+        LBLPassword.setBounds(20, 60, 100, 20); 
+        add(LBLPassword);
+
+        
+        TFPassword = new JPasswordField();
+        TFPassword.setBounds(130, 60, 200, 20); 
+        add(TFPassword);
+        
+     
+        
+        // ** RESET Button [14:42] **
+        reset = new JButton("RESET");
+        reset.setBounds(40, 120, 120, 20); 
+        reset.addActionListener(this); 
+        add(reset);
+
+        
+        submit = new JButton("SUBMIT");
+        submit.setBounds(190, 120, 120, 20); 
+        submit.addActionListener(this); 
+        add(submit);
+
+       
+        close = new JButton("CLOSE");
+        close.setBounds(120, 160, 120, 20); 
+        close.addActionListener(this); 
+        add(close);
+
+        
+        setVisible(true); 
+    }
+
+    // --- 4. Action Handling Method ---
+    public void actionPerformed(ActionEvent ae) {
+
+        if (ae.getSource() == close) { 
+            
+            setVisible(false); 
+
+        } else if (ae.getSource() == reset) { 
+            
+            TFUsername.setText(""); 
+            TFPassword.setText(""); 
+
+        } else if (ae.getSource() == submit) { // [20:49]
+            
+        }
+    }
+
+  
+    public static void main(String[] args) { // [02:35]
+        new Login(); 
+    }
+}
