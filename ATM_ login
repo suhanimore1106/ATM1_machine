@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Simulator - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: aqua;"></body>
+<body>
+
+    <center>
+        <div class="atm-container">
+        <div class="screen-header">
+            
+            <h1>WELCOME TO BANK ATM</h1>
+        </div>
+        
+        <div class="screen-body">
+            <h2 class="prompt">Please Enter Your Card Number and PIN</h2>
+            
+            <form id="loginForm" action="/api/login" method="POST">
+                <div class="input-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" required placeholder="e.g., 12345678">
+                </div>
+                
+                <div class="input-group">
+                    <label for="pin">PIN:</label>
+                    <input type="password" id="pin" name="pin" required maxlength="4" placeholder="••••">
+                </div>
+                
+                <p id="errorMessage" class="error-message" style="display: none;">Invalid credentials. Please try again.</p>
+                
+                <button type="submit" class="keypad-button">Continue</button>
+            </form>
+        </di>
+        
+        <div class="screen-footer">
+            <p>24/7 Service</p></center>
+    
+        </div>
+    </div>
+
+    </body>
+</html>
